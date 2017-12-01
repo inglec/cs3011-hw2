@@ -9,5 +9,8 @@
 %   false.
 %
 
+mkList(0, []).
+mkList(N, [N|T]) :- N > 0, X is N-1, mkList(X, T).
 
-mkList(+Num, ?list).    % + instantiated, ? might not be instantiated
+s(0) --> [].
+s(Sum) --> {mkList(Sum, DescList), member(Item, DescList), Remainder is Sum - Item}, [Item], s(Remainder).
